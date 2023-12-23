@@ -1,13 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavBar from "./components/navBar/NavBar";
-import ItemListContainer from "./components/ItemListConteiner/ItemListContainer";
- 
-function App() {
+import { MainRouter } from './router/MainRouter';
 
+function App() {
+  
   return (
     <div>
-      <NavBar/>
-      <ItemListContainer greeting="MONSTER ENERGY DRINKS"/>
+      <MainRouter/>
     </div>
   )
 }

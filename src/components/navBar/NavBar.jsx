@@ -4,28 +4,37 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import CartWidget from '../cartWidget/CartWidget';
 import './NavBar.css';
+import { Link } from 'react-router-dom';
+import {useCategory} from "../../hooks/useCategory"
 
 const NavBar = () => {
+
+    const {category} = useCategory()
     return(
+      <div>
         <Navbar data-bs-theme="dark"className="navBarConteiner">
-      <Container>
-        <Navbar.Brand href="#home" className='colorBlanco'> <img className='logotipo' src="https://www.monsterenergy.com/img/home/monster-logo.png" alt="logotipo" /></Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home" className='colorBlanco'>Inicio</Nav.Link>
-            <Nav.Link href="#link" className='colorBlanco'>Nosotros</Nav.Link>
-            <NavDropdown title="Tiendas" id="basic-nav-dropdown" className='colorBlanco'>
-              <NavDropdown.Item href="#action/3.1">Palermo</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Belgrano</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Caballito</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.4">Recoletas</NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-        <CartWidget/>
-      </Container>
-    </Navbar>
+          <Container>
+            <Link to ='/' className='colorBlanco'> Garbarino </Link>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <NavDropdown title="Categorias" id="basic-nav-dropdown" className='colorBlanco'>
+                  {category.map((item, index) => {
+                      return(
+                        <NavDropdown.Item key ={index}>
+                          <Link to={`/category/${item}`}>{item}</Link>
+                        </NavDropdown.Item>
+                      )
+                    })}
+                </NavDropdown>
+              </Nav>
+            </Navbar.Collapse>
+            <CartWidget/>
+          </Container>
+        </Navbar>
+        <div className='textItem'>GARBARINO</div>
+      </div>
+        
     )
 }
 export default NavBar;
